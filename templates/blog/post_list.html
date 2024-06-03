@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Blog Posts</h1>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">{{ post.title }}</h4>
+                    <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'post_create' %}" class="btn btn-success mt-4">Create New Post</a>
+</div>
+{% endblock %}
